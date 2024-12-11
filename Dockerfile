@@ -14,6 +14,6 @@ RUN pip install django==3.2
 RUN python manage.py migrate
 
 # Run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
