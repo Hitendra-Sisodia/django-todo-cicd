@@ -1,15 +1,19 @@
-FROM python:3
+# Use a specific Python version (e.g., 3.11 to avoid issues with Python 3.12+ and distutils)
+FROM python:3.11
 
-WORKDIR /data
+# Install necessary dependencies including setuptools
+RUN pip install --upgrade pip setuptools
 
-RUN pip install django==3.2
-
+# Copy the project files into the container
 COPY . .
 
+# Install project dependencies, including Django
+RUN pip install django==3.2
+
+# Run migrations to set up the database
 RUN python manage.py migrate
 
-EXPOSE 8000
-
-CMD ["python","manage.py","runserver","0.0.0.0:8000"]
+# Run the Django development server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
 
 
